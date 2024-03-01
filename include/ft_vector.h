@@ -6,7 +6,7 @@
 /*   By: mfelida <mfelida@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 10:28:30 by mfelida           #+#    #+#             */
-/*   Updated: 2024/03/01 14:15:33 by mfelida          ###   ########.fr       */
+/*   Updated: 2024/03/01 14:34:59 by mfelida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 
 # define FTVECTOR_DEFAULT_SIZE  (1024)
+
 typedef struct s_vector
 {
 	size_t	size;
