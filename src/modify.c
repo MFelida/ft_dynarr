@@ -6,13 +6,12 @@
 /*   By: mfelida <mfelida@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:24:03 by mfelida           #+#    #+#             */
-/*   Updated: 2024/03/01 14:11:39 by mfelida          ###   ########.fr       */
+/*   Updated: 2024/03/01 14:34:49 by mfelida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
 #include "libft.h"
-#include <stdlib.h>
 
 static size_t _vector_extend(t_vector *v)
 {
