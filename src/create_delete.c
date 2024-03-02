@@ -6,7 +6,7 @@
 /*   By: mfelida <mfelida@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:58:56 by mfelida           #+#    #+#             */
-/*   Updated: 2024/03/01 13:23:50 by mfelida          ###   ########.fr       */
+/*   Updated: 2024/03/02 19:17:41 by mfelida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include <stdlib.h>
 
-t_vector	*vector_new(size_t size, size_t elem_size)
+t_vector	*vector_new(size_t capacity, size_t elem_size)
 {
 	t_vector	*res;
 
@@ -23,10 +23,10 @@ t_vector	*vector_new(size_t size, size_t elem_size)
 	res = malloc(sizeof(t_vector));
 	if (!res)
 		return (NULL);
-	res->size = size;
 	res->elem_size = elem_size;
-	if (res->size)
-		res->cap = res->size;
+	res->size = 0;
+	if (capacity > 0)
+		res->cap = capacity;
 	else
 		res->cap = FTVECTOR_DEFAULT_SIZE;
 	res->data = malloc(res->cap * res->elem_size);
