@@ -6,7 +6,7 @@
 /*   By: mfelida <mfelida@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:24:03 by mfelida           #+#    #+#             */
-/*   Updated: 2024/03/02 13:34:20 by mfelida          ###   ########.fr       */
+/*   Updated: 2024/03/02 18:22:05 by mfelida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,6 @@ void	*vector_erase(t_vector *v, size_t pos)
 	if (pos == v->size - 1)
 		--v->size;
 	else
-		ft_memmove(vector_at(v, pos), vector_at(v, pos + 1), (--v->size - 1 - pos) * v->elem_size);
+		ft_memmove(vector_at(v, pos), vector_at(v, pos + 1), (--v->size - pos) * v->elem_size);
 	return (vector_at(v, pos));
 }
