@@ -6,12 +6,13 @@
 /*   By: mfelida <mfelida@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:24:03 by mfelida           #+#    #+#             */
-/*   Updated: 2024/03/02 18:22:05 by mfelida          ###   ########.fr       */
+/*   Updated: 2024/06/05 16:18:07 by mfelida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
 #include "libft.h"
+#include <stdlib.h>
 
 static size_t _vector_extend(t_vector *v)
 {
@@ -36,7 +37,7 @@ size_t	vector_pushback(t_vector *v, void *d)
 	if (!d)
 		return (v->size);
 	if (v->size == v->cap && _vector_extend(v) <= v->size)
-				return (v->size);
+		return (v->size);
 	ft_memmove(v->data + v->size * v->elem_size, d, v->elem_size);
 	return (++v->size);
 }
@@ -48,7 +49,12 @@ size_t	vector_insert(t_vector *v, size_t pos, void *d)
 	if (!d || pos >= v->size
 		|| (v->size == v->cap && _vector_extend(v) <= v->size))
 		return (v->size);
-	ft_memmove(v->data + (pos + 1) * v->elem_size, v->data + pos * v->elem_size, v->elem_size);
+	ft_memmove(v->data + (pos + 1) * v->elem_size,
+			v->data + pos * v->elem_size, v->elem_size);
+	if (d >= v->data + (pos * v->elem_size)
+		&& d < v->data + (v->size * v->elem_size))
+		d += v->elem_size;
+	ft_memmove(v->data + pos * v->elem_size, d, v->elem_size);
 	return (++v->size);
 }
 
@@ -72,6 +78,7 @@ void	*vector_erase(t_vector *v, size_t pos)
 	if (pos == v->size - 1)
 		--v->size;
 	else
-		ft_memmove(vector_at(v, pos), vector_at(v, pos + 1), (--v->size - pos) * v->elem_size);
+		ft_memmove(vector_at(v, pos),
+			vector_at(v, pos + 1), (--v->size - pos) * v->elem_size);
 	return (vector_at(v, pos));
 }
