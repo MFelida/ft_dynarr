@@ -6,7 +6,7 @@
 /*   By: mfelida <mfelida@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:24:03 by mfelida           #+#    #+#             */
-/*   Updated: 2024/06/05 16:18:07 by mfelida          ###   ########.fr       */
+/*   Updated: 2024/06/05 22:56:28 by mfelida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ size_t	vector_insert(t_vector *v, size_t pos, void *d)
 {
 	if (!v)
 		return (0);
-	if (!d || pos >= v->size
+	if (!d || pos > v->size
 		|| (v->size == v->cap && _vector_extend(v) <= v->size))
 		return (v->size);
 	ft_memmove(v->data + (pos + 1) * v->elem_size,
-			v->data + pos * v->elem_size, v->elem_size);
+			v->data + pos * v->elem_size, (v->size - pos) * v->elem_size);
 	if (d >= v->data + (pos * v->elem_size)
 		&& d < v->data + (v->size * v->elem_size))
 		d += v->elem_size;
