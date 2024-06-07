@@ -2,10 +2,6 @@ CC = cc
 CFLAGS = -c -Wall -Wextra -Werror
 CPPFLAGS = -Iinclude
 
-LIBFTPATH = /home/mfelida/codam/libft
-
-CPPFLAGS += -I$(LIBFTPATH)
-
 AR = ar
 AFLAGS = -crs
 
@@ -27,8 +23,13 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(AR) $(AFLAGS) $(NAME) $(OBJS)
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR) .submodules_init
 	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ $<
+
+.submodules_init:
+	@git submodule update --init --recursive
+	@cd include && ln -s ../libft/libft.h
+	@touch .submodules_init
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
