@@ -1,6 +1,6 @@
 CC = cc
 CFLAGS = -c -Wall -Wextra -Werror
-CPPFLAGS = -Iinclude
+CPPFLAGS = -Iinclude -I../libft
 
 AR = ar
 AFLAGS = -crs
@@ -23,13 +23,8 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(AR) $(AFLAGS) $(NAME) $(OBJS)
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR) .submodules_init
+$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ $<
-
-.submodules_init:
-	@git submodule update --init --recursive
-	@cd include && ln -s ../libft/libft.h
-	@touch .submodules_init
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
