@@ -5,7 +5,7 @@ CPPFLAGS = -Iinclude
 AR = ar
 AFLAGS = -crs
 
-NAME = libftvector.a
+NAME = libftdynarr.a
 
 SRCFILES = create_delete.c\
 		   modify.c\

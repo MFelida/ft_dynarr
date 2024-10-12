@@ -1,41 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vector.h                                        :+:      :+:    :+:   */
+/*   ft_dynarr.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfelida <mfelida@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 10:28:30 by mfelida           #+#    #+#             */
-/*   Updated: 2024/03/01 14:34:59 by mfelida          ###   ########.fr       */
+/*   Updated: 2024/10/12 12:37:55 by mfelida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_VECTOR_H
-# define FT_VECTOR_H
+#ifndef FT_DYNARR_H
+# define FT_DYNARR_H
 
 # include <stdlib.h>
 
-# define FTVECTOR_DEFAULT_SIZE  (1024)
+# define FTDYNARR_DEFAULT_SIZE  (1024)
 
-typedef struct s_vector
+typedef struct s_dynarr
 {
 	size_t	size;
 	size_t	cap;
 	size_t	elem_size;
 	void	*data;
-}	t_vector;
+}	t_dynarr;
 
 // create_delete.c
-t_vector	*vector_new(size_t	size, size_t elem_size);
-void		vector_free(t_vector **v);
+t_dynarr	*dynarr_new(size_t	size, size_t elem_size);
+void		dynarr_free(t_dynarr **v);
 // modify.c
-size_t		vector_pushback(t_vector *v, void *d);
-size_t		vector_insert(t_vector *v, size_t pos, void *d);
-void		*vector_popback(t_vector *v);
-void		*vector_erase(t_vector *v, size_t pos);
+size_t		dynarr_pushback(t_dynarr *v, void *d);
+size_t		dynarr_insert(t_dynarr *v, size_t pos, void *d);
+void		*dynarr_popback(t_dynarr *v);
+void		*dynarr_erase(t_dynarr *v, size_t pos);
 // access.c
-void		*vector_at(t_vector *v, size_t pos);
-void		*vector_front(t_vector *v);
-void		*vector_back(t_vector *v);
+void		*dynarr_at(t_dynarr *v, size_t pos);
+void		*dynarr_front(t_dynarr *v);
+void		*dynarr_back(t_dynarr *v);
 
-#endif // !FT_VECTOR_H
+#endif // !FT_DYNARR_H

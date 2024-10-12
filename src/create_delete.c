@@ -6,21 +6,21 @@
 /*   By: mfelida <mfelida@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:58:56 by mfelida           #+#    #+#             */
-/*   Updated: 2024/03/02 19:17:41 by mfelida          ###   ########.fr       */
+/*   Updated: 2024/10/12 12:40:11 by mfelida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_vector.h"
+#include "ft_dynarr.h"
 
 #include <stdlib.h>
 
-t_vector	*vector_new(size_t capacity, size_t elem_size)
+t_dynarr	*dynarr_new(size_t capacity, size_t elem_size)
 {
-	t_vector	*res;
+	t_dynarr	*res;
 
 	if (elem_size == 0)
 		return (NULL);
-	res = malloc(sizeof(t_vector));
+	res = malloc(sizeof(t_dynarr));
 	if (!res)
 		return (NULL);
 	res->elem_size = elem_size;
@@ -28,7 +28,7 @@ t_vector	*vector_new(size_t capacity, size_t elem_size)
 	if (capacity > 0)
 		res->cap = capacity;
 	else
-		res->cap = FTVECTOR_DEFAULT_SIZE;
+		res->cap = FTDYNARR_DEFAULT_SIZE;
 	res->data = malloc(res->cap * res->elem_size);
 	if (!res->data)
 	{
@@ -38,7 +38,7 @@ t_vector	*vector_new(size_t capacity, size_t elem_size)
 	return (res);
 }
 
-void	vector_free(t_vector **v)
+void	dynarr_free(t_dynarr **v)
 {
 	free((*v)->data);
 	free(*v);

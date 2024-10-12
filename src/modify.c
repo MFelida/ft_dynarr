@@ -6,15 +6,15 @@
 /*   By: mfelida <mfelida@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:24:03 by mfelida           #+#    #+#             */
-/*   Updated: 2024/06/05 22:56:28 by mfelida          ###   ########.fr       */
+/*   Updated: 2024/10/12 13:13:10 by mfelida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_vector.h"
+#include "ft_dynarr.h"
 #include "libft.h"
 #include <stdlib.h>
 
-static size_t _vector_extend(t_vector *v)
+static size_t _dynarr_extend(t_dynarr *v)
 {
 	void	*new;
 
@@ -30,24 +30,24 @@ static size_t _vector_extend(t_vector *v)
 	return (v->cap);
 }
 
-size_t	vector_pushback(t_vector *v, void *d)
+size_t	dynarr_pushback(t_dynarr *v, void *d)
 {
 	if (!v)
 		return (0);
 	if (!d)
 		return (v->size);
-	if (v->size == v->cap && _vector_extend(v) <= v->size)
+	if (v->size == v->cap && _dynarr_extend(v) <= v->size)
 		return (v->size);
 	ft_memmove(v->data + v->size * v->elem_size, d, v->elem_size);
 	return (++v->size);
 }
 
-size_t	vector_insert(t_vector *v, size_t pos, void *d)
+size_t	dynarr_insert(t_dynarr *v, size_t pos, void *d)
 {
 	if (!v)
 		return (0);
 	if (!d || pos > v->size
-		|| (v->size == v->cap && _vector_extend(v) <= v->size))
+		|| (v->size == v->cap && _dynarr_extend(v) <= v->size))
 		return (v->size);
 	ft_memmove(v->data + (pos + 1) * v->elem_size,
 			v->data + pos * v->elem_size, (v->size - pos) * v->elem_size);
@@ -58,18 +58,18 @@ size_t	vector_insert(t_vector *v, size_t pos, void *d)
 	return (++v->size);
 }
 
-void	*vector_popback(t_vector *v)
+void	*dynarr_popback(t_dynarr *v)
 {
 	void	*ret;
 
 	if (!v)
 		return (NULL);
-	ret = vector_back(v);
+	ret = dynarr_back(v);
 	--v->size;
 	return (ret);
 }
 
-void	*vector_erase(t_vector *v, size_t pos)
+void	*dynarr_erase(t_dynarr *v, size_t pos)
 {
 	if (!v)
 		return (NULL);
@@ -78,7 +78,7 @@ void	*vector_erase(t_vector *v, size_t pos)
 	if (pos == v->size - 1)
 		--v->size;
 	else
-		ft_memmove(vector_at(v, pos),
-			vector_at(v, pos + 1), (--v->size - pos) * v->elem_size);
-	return (vector_at(v, pos));
+		ft_memmove(dynarr_at(v, pos),
+			dynarr_at(v, pos + 1), (--v->size - pos) * v->elem_size);
+	return (dynarr_at(v, pos));
 }
