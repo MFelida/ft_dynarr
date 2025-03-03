@@ -6,7 +6,7 @@
 /*   By: mfelida <mfelida@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:24:03 by mfelida           #+#    #+#             */
-/*   Updated: 2024/10/12 13:13:10 by mfelida          ###   ########.fr       */
+/*   Updated: 2025/03/03 19:18:20 by mifelida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static size_t _dynarr_extend(t_dynarr *v)
+static size_t	_dynarr_extend(t_dynarr *v)
 {
 	void	*new;
 
@@ -50,7 +50,7 @@ size_t	dynarr_insert(t_dynarr *v, size_t pos, void *d)
 		|| (v->size == v->cap && _dynarr_extend(v) <= v->size))
 		return (v->size);
 	ft_memmove(v->data + (pos + 1) * v->elem_size,
-			v->data + pos * v->elem_size, (v->size - pos) * v->elem_size);
+		v->data + pos * v->elem_size, (v->size - pos) * v->elem_size);
 	if (d >= v->data + (pos * v->elem_size)
 		&& d < v->data + (v->size * v->elem_size))
 		d += v->elem_size;
