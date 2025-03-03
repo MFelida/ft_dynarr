@@ -1,6 +1,6 @@
 CC = cc
 CFLAGS = -c -Wall -Wextra -Werror
-CPPFLAGS = -Iinclude -I../libft
+CPPFLAGS = -Iinclude -I$(LIBFTDIR)
 
 AR = ar
 AFLAGS = -crs
@@ -17,14 +17,19 @@ OBJFILES = $(SRCFILES:.c=.o)
 OBJDIR = obj
 OBJS = $(addprefix $(OBJDIR)/, $(OBJFILES))
 
+$(LIBFTDIR) = ../libft
+
 all: CFLAGS += -O3
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(AR) $(AFLAGS) $(NAME) $(OBJS)
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c $(LIBFTDIR)/libft.h | $(OBJDIR)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ $<
+
+$(LIBFTDIR)/libft.h:
+	@ git clone git@github.com:MFelida/libft.git $(LIBFTDIR)
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
