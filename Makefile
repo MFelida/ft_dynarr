@@ -17,7 +17,7 @@ OBJFILES = $(SRCFILES:.c=.o)
 OBJDIR = obj
 OBJS = $(addprefix $(OBJDIR)/, $(OBJFILES))
 
-$(LIBFTDIR) = ../libft
+LIBFTDIR = ../libft
 
 all: CFLAGS += -O3
 all: $(NAME)
