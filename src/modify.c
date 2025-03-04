@@ -6,7 +6,7 @@
 /*   By: mfelida <mfelida@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:24:03 by mfelida           #+#    #+#             */
-/*   Updated: 2025/03/04 16:07:46 by mifelida         ###   ########.fr       */
+/*   Updated: 2025/03/04 16:57:40 by mifelida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,9 @@ static size_t	_dynarr_extend(t_dynarr *v)
 
 	if (!v)
 		return (0);
-	new = malloc(2 * v->cap * v->elem_size);
-	if (!new)
+	new = ft_realloc(v->data, 2 * v->cap * v->elem_size);
+	if (new == v->data)
 		return (v->cap);
-	ft_memcpy(new, v->data, v->size * v->elem_size);
-	free(v->data);
 	v->data = new;
 	v->cap *= 2;
 	return (v->cap);
@@ -47,7 +45,7 @@ size_t	dynarr_insert(t_dynarr *v, size_t pos, void *d)
 	if (!v)
 		return (0);
 	if (!d || pos > v->size
-		|| (v->size == v->cap && _dynarr_extend(v) <= v->size))
+		|| (v->size == v->cap && v->cap <= _dynarr_extend(v)))
 		return (v->size);
 	ft_memmove(v->data + (pos + 1) * v->elem_size,
 		v->data + pos * v->elem_size, (v->size - pos) * v->elem_size);
