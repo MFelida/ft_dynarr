@@ -6,7 +6,7 @@
 /*   By: mfelida <mfelida@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:24:03 by mfelida           #+#    #+#             */
-/*   Updated: 2025/03/03 19:18:20 by mifelida         ###   ########.fr       */
+/*   Updated: 2025/03/04 16:07:46 by mifelida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static size_t	_dynarr_extend(t_dynarr *v)
 	new = malloc(2 * v->cap * v->elem_size);
 	if (!new)
 		return (v->cap);
-	ft_memcpy(new, v->data, v->size);
+	ft_memcpy(new, v->data, v->size * v->elem_size);
 	free(v->data);
 	v->data = new;
 	v->cap *= 2;
