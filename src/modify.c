@@ -6,7 +6,7 @@
 /*   By: mfelida <mfelida@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:24:03 by mfelida           #+#    #+#             */
-/*   Updated: 2025/03/04 16:57:40 by mifelida         ###   ########.fr       */
+/*   Updated: 2025/03/05 14:59:07 by mifelida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static size_t	_dynarr_extend(t_dynarr *v)
 
 	if (!v)
 		return (0);
-	new = ft_realloc(v->data, 2 * v->cap * v->elem_size);
+	new = ft_realloc(v->data, 2 * v->cap * v->elem_size, v->cap);
 	if (new == v->data)
 		return (v->cap);
 	v->data = new;
