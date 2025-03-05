@@ -6,7 +6,7 @@
 /*   By: mfelida <mfelida@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 10:28:30 by mfelida           #+#    #+#             */
-/*   Updated: 2025/03/05 19:16:53 by mifelida         ###   ########.fr       */
+/*   Updated: 2025/03/05 19:19:28 by mifelida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 
-# define FTDYNARR_DEFAULT_SIZE  (1024)
+# define FTDYNARR_DEFAULT_SIZE  1024
 
 typedef struct s_dynarr
 {
