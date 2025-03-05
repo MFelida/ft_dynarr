@@ -6,11 +6,12 @@
 /*   By: mfelida <mfelida@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:58:56 by mfelida           #+#    #+#             */
-/*   Updated: 2024/10/12 12:40:11 by mfelida          ###   ########.fr       */
+/*   Updated: 2025/03/05 19:18:02 by mifelida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_dynarr.h"
+#include "libft.h"
 
 #include <stdlib.h>
 
@@ -35,6 +36,17 @@ t_dynarr	*dynarr_new(size_t capacity, size_t elem_size)
 		free(res);
 		return (NULL);
 	}
+	return (res);
+}
+
+t_dynarr	*dynarr_copy(t_dynarr *src)
+{
+	t_dynarr	*res;
+
+	res = dynarr_new(src->size, src->elem_size);
+	if (!res)
+		return (NULL);
+	ft_memcpy(res->data, src->data, src->size * src->elem_size);
 	return (res);
 }
 
