@@ -6,7 +6,7 @@
 /*   By: mfelida <mfelida@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:58:56 by mfelida           #+#    #+#             */
-/*   Updated: 2025/03/05 19:18:02 by mifelida         ###   ########.fr       */
+/*   Updated: 2025/03/05 20:10:32 by mifelida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ t_dynarr	*dynarr_copy(t_dynarr *src)
 	if (!res)
 		return (NULL);
 	ft_memcpy(res->data, src->data, src->size * src->elem_size);
+	res->cap = src->cap;
+	res->elem_size = src->elem_size;
+	res->size = src->size;
 	return (res);
 }
 
