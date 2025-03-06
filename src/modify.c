@@ -6,7 +6,7 @@
 /*   By: mfelida <mfelida@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:24:03 by mfelida           #+#    #+#             */
-/*   Updated: 2025/03/05 14:59:07 by mifelida         ###   ########.fr       */
+/*   Updated: 2025/03/06 11:28:52 by mifelida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ size_t	dynarr_pushback(t_dynarr *v, void *d)
 		return (0);
 	if (!d)
 		return (v->size);
-	if (v->size == v->cap && _dynarr_extend(v) <= v->size)
+	if (v->size == v->cap && v->cap >= _dynarr_extend(v))
 		return (v->size);
 	ft_memmove(v->data + v->size * v->elem_size, d, v->elem_size);
 	return (++v->size);
@@ -45,7 +45,7 @@ size_t	dynarr_insert(t_dynarr *v, size_t pos, void *d)
 	if (!v)
 		return (0);
 	if (!d || pos > v->size
-		|| (v->size == v->cap && v->cap <= _dynarr_extend(v)))
+		|| (v->size == v->cap && v->cap >= _dynarr_extend(v)))
 		return (v->size);
 	ft_memmove(v->data + (pos + 1) * v->elem_size,
 		v->data + pos * v->elem_size, (v->size - pos) * v->elem_size);

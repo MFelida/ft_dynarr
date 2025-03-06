@@ -6,7 +6,7 @@
 /*   By: mfelida <mfelida@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 10:28:30 by mfelida           #+#    #+#             */
-/*   Updated: 2025/03/05 19:19:28 by mifelida         ###   ########.fr       */
+/*   Updated: 2025/03/06 11:27:45 by mifelida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 
 typedef struct s_dynarr
 {
+	void	*data;
 	size_t	size;
 	size_t	cap;
 	size_t	elem_size;
-	void	*data;
 }	t_dynarr;
 
 // create_delete.c
