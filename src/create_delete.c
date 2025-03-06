@@ -6,7 +6,7 @@
 /*   By: mfelida <mfelida@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:58:56 by mfelida           #+#    #+#             */
-/*   Updated: 2025/03/06 11:53:47 by mifelida         ###   ########.fr       */
+/*   Updated: 2025/03/06 13:48:47 by mifelida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,12 @@ t_dynarr	*dynarr_copy(t_dynarr *src)
 	return (res);
 }
 
-void	dynarr_free(t_dynarr *v)
+void	*dynarr_free(t_dynarr *v)
 {
 	if (!v->me)
-		return ;
+		return (NULL);
 	free(v->data);
 	free(v->me);
 	v->me = NULL;
+	return (NULL);
 }

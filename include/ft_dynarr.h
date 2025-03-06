@@ -6,7 +6,7 @@
 /*   By: mfelida <mfelida@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 10:28:30 by mfelida           #+#    #+#             */
-/*   Updated: 2025/03/06 11:54:09 by mifelida         ###   ########.fr       */
+/*   Updated: 2025/03/06 13:47:46 by mifelida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_dynarr
 // create_delete.c
 t_dynarr	*dynarr_new(size_t	size, size_t elem_size);
 t_dynarr	*dynarr_copy(t_dynarr *src);
-void		dynarr_free(t_dynarr *v);
+void		*dynarr_free(t_dynarr *v);
 // modify.c
 size_t		dynarr_pushback(t_dynarr *v, void *d);
 size_t		dynarr_insert(t_dynarr *v, size_t pos, void *d);
