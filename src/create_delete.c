@@ -6,7 +6,7 @@
 /*   By: mfelida <mfelida@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:58:56 by mfelida           #+#    #+#             */
-/*   Updated: 2025/03/06 13:48:47 by mifelida         ###   ########.fr       */
+/*   Updated: 2025/03/12 23:00:57 by mifelida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_dynarr	*dynarr_new(size_t capacity, size_t elem_size)
 	res = malloc(sizeof(t_dynarr));
 	if (!res)
 		return (NULL);
-	res->me = res;
+	res->_me = res;
 	res->elem_size = elem_size;
 	res->size = 0;
 	if (capacity > 0)
@@ -47,7 +47,7 @@ t_dynarr	*dynarr_copy(t_dynarr *src)
 	res = dynarr_new(src->size, src->elem_size);
 	if (!res)
 		return (NULL);
-	res->me = res;
+	res->_me = res;
 	ft_memcpy(res->data, src->data, src->size * src->elem_size);
 	res->cap = src->cap;
 	res->elem_size = src->elem_size;
@@ -57,10 +57,15 @@ t_dynarr	*dynarr_copy(t_dynarr *src)
 
 void	*dynarr_free(t_dynarr *v)
 {
-	if (!v->me)
+	if (!v || !v->_me)
 		return (NULL);
 	free(v->data);
-	free(v->me);
-	v->me = NULL;
+	if (v != v->_me)
+	{
+		free(v->_me);
+		v->_me = NULL;
+	}
+	else
+		free(v);
 	return (NULL);
 }

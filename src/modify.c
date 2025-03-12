@@ -6,7 +6,7 @@
 /*   By: mfelida <mfelida@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:24:03 by mfelida           #+#    #+#             */
-/*   Updated: 2025/03/08 13:14:51 by mifelida         ###   ########.fr       */
+/*   Updated: 2025/03/12 15:45:33 by mifelida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static size_t	_dynarr_extend(t_dynarr *v)
 {
 	void	*new;
 
-	if (!v || !v->me)
+	if (!v || !v->_me)
 		return (0);
 	new = ft_realloc(v->data, 2 * v->cap * v->elem_size,
 			v->size * v->elem_size);
@@ -31,7 +31,7 @@ static size_t	_dynarr_extend(t_dynarr *v)
 
 size_t	dynarr_pushback(t_dynarr *v, void *d)
 {
-	if (!v || !v->me)
+	if (!v || !v->_me)
 		return (0);
 	if (!d)
 		return (v->size);
@@ -43,7 +43,7 @@ size_t	dynarr_pushback(t_dynarr *v, void *d)
 
 size_t	dynarr_insert(t_dynarr *v, size_t pos, void *d)
 {
-	if (!v || !v->me)
+	if (!v || !v->_me)
 		return (0);
 	if (!d || pos > v->size
 		|| (v->size == v->cap && v->cap >= _dynarr_extend(v)))
@@ -61,7 +61,7 @@ void	*dynarr_popback(t_dynarr *v)
 {
 	void	*ret;
 
-	if (!v || !v->me)
+	if (!v || !v->_me)
 		return (NULL);
 	ret = dynarr_back(v);
 	--v->size;
@@ -70,7 +70,7 @@ void	*dynarr_popback(t_dynarr *v)
 
 void	*dynarr_erase(t_dynarr *v, size_t pos)
 {
-	if (!v || !v->me)
+	if (!v || !v->_me)
 		return (NULL);
 	if (pos >= v->size)
 		return (NULL);
