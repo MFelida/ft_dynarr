@@ -3,32 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   access.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfelida <mfelida@student.codam.nl>         +#+  +:+       +#+        */
+/*   By: mifelida <mifelida@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/01 14:02:09 by mfelida           #+#    #+#             */
-/*   Updated: 2025/03/12 15:45:35 by mifelida         ###   ########.fr       */
+/*   Created: 2025/09/19 23:44:55 by mifelida          #+#    #+#             */
+/*   Updated: 2025/09/19 23:52:35 by mifelida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_dynarr.h"
+#include <stddef.h>
+#include <stdlib.h>
 
-void	*dynarr_at(t_dynarr *v, size_t pos)
+size_t	dynarr_size(void *dynarr)
 {
-	if (!v || !v->_me || pos >= v->size)
-		return (NULL);
-	return (v->data + pos * v->elem_size);
+	return (((t_dynarr_header *)dynarr)[-1].size);
 }
 
-void	*dynarr_front(t_dynarr *v)
+size_t	dynarr_capacity(void *dynarr)
 {
-	if (!v || !v->_me || v->size == 0)
-		return (NULL);
-	return (v->data);
+	return (((t_dynarr_header *)dynarr)[-1].capacity);
 }
 
-void	*dynarr_back(t_dynarr *v)
+size_t	dynarr_extend(void **dynarr)
 {
-	if (!v || !v->_me || v->size == 0)
-		return (NULL);
-	return (dynarr_at(v, v->size - 1));
+	t_dynarr_header	*header;
+	t_dynarr_header	*new;
+
+	header = &(*(t_dynarr_header **) dynarr)[-1];
+	new = malloc(sizeof(t_dynarr_header) + header->capacity * header->element_size * 2);
+	new->capacity = header->capacity * 2;
+	new->element_size = header->element_size;
+	new->size = header->size;
+	free(header);
+	*dynarr = &new[1];
+	return (new->capacity);
 }

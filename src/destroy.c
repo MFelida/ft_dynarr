@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dynarr.h                                        :+:      :+:    :+:   */
+/*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mifelida <mifelida@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/19 23:19:21 by mifelida          #+#    #+#             */
-/*   Updated: 2025/09/19 23:58:18 by mifelida         ###   ########.fr       */
+/*   Created: 2025/09/19 23:42:23 by mifelida          #+#    #+#             */
+/*   Updated: 2025/09/19 23:44:29 by mifelida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_DYNARR_H
-# define FT_DYNARR_H
+#include "ft_dynarr.h"
 
-#include <stddef.h>
-typedef struct s_dynarr_header
+#include <stdlib.h>
+
+void	dynarr_free(void *dynarr)
 {
-	size_t	capacity;
-	size_t	size;
-	size_t	element_size;
-}	t_dynarr_header;
-
-void	*dynarr_new(size_t capacity, size_t element_size);
-void	*dynarr_copy(void *src);
-void	dynarr_free(void *dynarr);
-
-size_t	dynarr_size(void *dynarr);
-size_t	dynarr_capacity(void *dynarr);
-size_t	dynarr_extend(void **dynarr);
-
-#endif
+	free(&((t_dynarr_header*)dynarr)[-1]);
+}

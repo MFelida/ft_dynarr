@@ -7,9 +7,7 @@ AFLAGS = -crs
 
 NAME = libftdynarr.a
 
-SRCFILES = create_delete.c\
-		   modify.c\
-		   access.c
+SRCFILES = create.c destroy.c access.c
 SRCDIR = src
 SRCS = $(addprefix $(SRCDIR)/, $(SRCFILES))
 
